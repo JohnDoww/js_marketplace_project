@@ -16,7 +16,7 @@ describe('Check validation for each field. Field is empty or not', () => {
     let passwordLocator = "#AccountFrm_password";
     let passwordConfirmLocator = "#AccountFrm_confirm";
 
-    const oldCarParameters = [
+    const fieldsData = [
         {
             testData: {
                 firstNameData: null,
@@ -201,15 +201,14 @@ describe('Check validation for each field. Field is empty or not', () => {
         }
     ]
 
-    oldCarParameters.forEach(carParameters => {
-        it(`validation for ${carParameters.testData.emptyField} field`, () => {
+    fieldsData.forEach(fieldsParameters => {
+        it(`Validation for ${fieldsParameters.testData.emptyField} field`, () => {
 
             cy.get('#customer_menu_top li').click();
             cy.get('#accountFrm_accountregister')
                 .should('be.enabled');
 
             cy.get('[title="Continue"]').click();
-
 
             function fillInFields(webElement, data) {
                 if (webElement.toString() === "#AccountFrm_zone_id") {
@@ -235,16 +234,16 @@ describe('Check validation for each field. Field is empty or not', () => {
                     .should('have.value', data);
             }
 
-            fillInFields(firstNameLocator, carParameters.testData.firstNameData);
-            fillInFields(lastNameLocator, carParameters.testData.lastNameData);
-            fillInFields(emailLocator, carParameters.testData.emailData);
-            fillInFields(addressLocator, carParameters.testData.addressData);
-            fillInFields(cityLocator, carParameters.testData.cityData);
-            fillInFields(regionLocator, carParameters.testData.regionData);
-            fillInFields(zipCodeLocator, carParameters.testData.zipCodeData);
-            fillInFields(loginLocator, carParameters.testData.loginData);
-            fillInFields(passwordLocator, carParameters.testData.passwordData);
-            fillInFields(passwordConfirmLocator, carParameters.testData.passwordConfirmData);
+            fillInFields(firstNameLocator, fieldsParameters.testData.firstNameData);
+            fillInFields(lastNameLocator, fieldsParameters.testData.lastNameData);
+            fillInFields(emailLocator, fieldsParameters.testData.emailData);
+            fillInFields(addressLocator, fieldsParameters.testData.addressData);
+            fillInFields(cityLocator, fieldsParameters.testData.cityData);
+            fillInFields(regionLocator, fieldsParameters.testData.regionData);
+            fillInFields(zipCodeLocator, fieldsParameters.testData.zipCodeData);
+            fillInFields(loginLocator, fieldsParameters.testData.loginData);
+            fillInFields(passwordLocator, fieldsParameters.testData.passwordData);
+            fillInFields(passwordConfirmLocator, fieldsParameters.testData.passwordConfirmData);
 
             cy.get('#AccountFrm_agree')
                 .should('be.enabled');
@@ -256,19 +255,18 @@ describe('Check validation for each field. Field is empty or not', () => {
                 .click();
 
             cy.get("div ~span")
-                .eq(carParameters.fieldExpectation.lastNameFieldNumber)
+                .eq(fieldsParameters.fieldExpectation.lastNameFieldNumber)
                 .should('have.attr', 'class', 'help-block')
                 .then(element => {
                     expect(element)
                         .to
                         .contain
-                        .text(carParameters.fieldExpectation.errorMessage);
+                        .text(fieldsParameters.fieldExpectation.errorMessage);
                 })
-
         })
     })
+
     after(() => {
         cy.end();
     })
-
 })

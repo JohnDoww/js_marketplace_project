@@ -1,5 +1,7 @@
 import BasePage from "./BasePage";
 
+
+
 class RegistrationPage extends BasePage{
 
     constructor(){
@@ -22,6 +24,9 @@ class RegistrationPage extends BasePage{
         this.elements.newsLetterCheckbox = '#AccountFrm_newsletter1';
         this.elements.privacyPolicyCheckbox = '#AccountFrm_agree';
         this.elements.submitRegistrationFormButton = 'button[title="Continue"]';
+        this.elements.registerAccountRadioBatton = '#accountFrm_accountregister';
+        this.elements.toStartRegistrationButton = '[title="Continue"]';
+
     }
 
     getFirstNameField(){
@@ -92,6 +97,14 @@ class RegistrationPage extends BasePage{
         return cy.get(this.elements.privacyPolicyCheckbox)
     }
 
+    getRegisterAccountRadioBatton(){
+        return cy.get(this.elements.registerAccountRadioBatton)
+    }
+
+    getToStartRegistrationButton(){
+        return cy.get(this.elements.toStartRegistrationButton)
+    }
+
     /**
      * Get submit button element from page
      * @returns {CypressElement} Returns the Submit Button in Registration Form as Cypress element.
@@ -105,8 +118,14 @@ class RegistrationPage extends BasePage{
      *  @param {Object} user - user object
      *  User object example can be found in ./cypress/fixtures/user.json
      */
-    fillRegistrationFields(user){
-        cy.log('Fill in registration fields...');
+    registrateNewUser(user){
+
+        const basePage = new BasePage();
+        basePage.getLoginOrRegistratedButton().click();
+
+
+        this.getRegisterAccountRadioBatton().should('be.enabled');
+        this.getToStartRegistrationButton().click();
 
         this.getFirstNameField().type(user.firstName);
         this.getLastNameField().type(user.lastName);
@@ -118,11 +137,15 @@ class RegistrationPage extends BasePage{
         this.getAddressSecondField().type(user.address2);
         this.getCityField().type(user.city);
         this.getPostcodeField().type(user.postcode);
-        this.getCountryIdField().select(user.countryid);
+        this.getCountryIdField().select(user.country);
         this.getZoneIdField().select(user.zoneId);
         this.getLoginNameField().type(user.loginName);
         this.getPasswordField().type(user.password);
         this.getPasswordConfirmField().type(user.password);
+
+        this.getNewsLetterCheckbox().click();
+        this.getPrivacyPolicyCheckbox().click();
+        this.getSubmitRegistrationFormButton().click();
     }
 
 }

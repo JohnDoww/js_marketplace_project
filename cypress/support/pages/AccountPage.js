@@ -4,11 +4,15 @@ class AccountPage extends BasePage{
 
     constructor(){
         super();
-        this.elements.firstNameText = '.heading1';
     }
 
-    getFirstNameText(){
-        return cy.get(this.elements.firstNameText, {timeout: 2000})
+    logOut(){
+        cy.visit('https://automationteststore.com/index.php?rt=account/account');
+        cy.get('.side_account_list li').eq(9).click();
+        cy.get('.btn.btn-default.mr10').should('be.visible');
+        cy.get('.btn.btn-default.mr10').click();
+        cy.url().should('eq', 'https://automationteststore.com/')
+        // cy.getCookie('customer').should('be.null');
     }
     
 }

@@ -8,7 +8,7 @@ class HomePage extends BasePage{
 
     visit(){
         cy.log('Opening home page...');
-        cy.visit('/');
+        cy.visit('https://automationteststore.com/');
     }
 
 }

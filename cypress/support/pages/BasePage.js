@@ -2,11 +2,18 @@ export default class BasePage{
     
     constructor(){
         this.elements = {};
-        this.elements.headerAccountButton = '.topnavbar [data-id="menu_account"]';
+        this.elements.loginOrRegistratedButton = '#customer_menu_top li';
+        this.elements.helloUserTitle = '.top.menu_account div';
     }
 
-    getHeaderAccountButton(){
-        return cy.get(this.elements.headerAccountButton);
+    getLoginOrRegistratedButton(){
+        return cy.get(this.elements.loginOrRegistratedButton);
+    }
+
+    getHelloUserTitle(){
+        return cy.get(this.elements.helloUserTitle);
     }
 
 }
+
+

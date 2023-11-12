@@ -1,0 +1,184 @@
+ [
+    {
+        "testData": {
+            "firstNameData": null,
+            "lastNameData": "Lastname",
+            "emailData": "somemeail@emaaail.com",
+            "addressData": "Down Town 111",
+            "cityData": "Uganda",
+            "regionData": "Angus",
+            "zipCodeData": "12341234",
+            "loginData": "loooogin111",
+            "passwordData": "1234",
+            "passwordConfirmData": "1234",
+            "emptyField": "First Name"
+        },
+        "fieldExpectation": {
+            "errorMessage": "First Name must be between 1 and 32 characters!",
+            "lastNameFieldNumber": 0
+        }
+    }, {
+        "testData": {
+            "firstNameData": "Firstname",
+            "lastNameData": null,
+            "emailData": "somemeail@emaaail.com",
+            "addressData": "Down Town 111",
+            "cityData": "Uganda",
+            "regionData": "Angus",
+            "zipCodeData": "12341234",
+            "loginData": "loooogin111",
+            "passwordData": "1234",
+            "passwordConfirmData": "1234",
+            "emptyField": "Last Name"
+        },
+        "fieldExpectation": {
+            "errorMessage": "Last Name must be between 1 and 32 characters!",
+            "lastNameFieldNumber": 1
+        }
+    }, {
+        "testData": {
+            "firstNameData": "Firstname",
+            "lastNameData": "Lastname",
+            "emailData": null,
+            "addressData": "Down Town 111",
+            "cityData": "Uganda",
+            "regionData": "Angus",
+            "zipCodeData": "12341234",
+            "loginData": "loooogin111",
+            "passwordData": "1234",
+            "passwordConfirmData": "1234",
+            "emptyField": "Email"
+        },
+        "fieldExpectation": {
+            "errorMessage": "Email Address does not appear to be valid!",
+            "lastNameFieldNumber": 2
+        }
+    }, {
+        "testData": {
+            "firstNameData": "Firstname",
+            "lastNameData": "Lastname",
+            "emailData": "somemeail@emaaail.com",
+            "addressData": null,
+            "cityData": "Uganda",
+            "regionData": "Angus",
+            "zipCodeData": "12341234",
+            "loginData": "loooogin111",
+            "passwordData": "1234",
+            "passwordConfirmData": "1234",
+            "emptyField": "Address"
+        },
+        "fieldExpectation": {
+            "errorMessage": "Address 1 must be between 3 and 128 characters!",
+            "lastNameFieldNumber": 6
+        }
+    }, {
+        "testData": {
+            "firstNameData": "Firstname",
+            "lastNameData": "Lastname",
+            "emailData": "somemeail@emaaail.com",
+            "addressData": "Down Town 111",
+            "cityData": null,
+            "regionData": "Angus",
+            "zipCodeData": "12341234",
+            "loginData": "loooogin111",
+            "passwordData": "1234",
+            "passwordConfirmData": "1234",
+            "emptyField": "City"
+        },
+        "fieldExpectation": {
+            "errorMessage": "City must be between 3 and 128 characters!",
+            "lastNameFieldNumber": 8
+        }
+    }, {
+        "testData": {
+            "firstNameData": "Firstname",
+            "lastNameData": "Lastname",
+            "emailData": "somemeail@emaaail.com",
+            "addressData": "Down Town 111",
+            "cityData": "Uganda",
+            "regionData": null,
+            "zipCodeData": "12341234",
+            "loginData": "loooogin111",
+            "passwordData": "1234",
+            "passwordConfirmData": "1234",
+            "emptyField": "Region"
+        },
+        "fieldExpectation": {
+            "errorMessage": "Please select a region / state!",
+            "lastNameFieldNumber": 9
+        }
+    }, {
+        "testData": {
+            "firstNameData": "Firstname",
+            "lastNameData": "Lastname",
+            "emailData": "somemeail@emaaail.com",
+            "addressData": "Down Town 111",
+            "cityData": "Uganda",
+            "regionData": "Angus",
+            "zipCodeData": null,
+            "loginData": "loooogin111",
+            "passwordData": "1234",
+            "passwordConfirmData": "1234",
+            "emptyField": "Zip Code"
+        },
+        "fieldExpectation": {
+            "errorMessage": "Zip/postal code must be between 3 and 10 characters!",
+            "lastNameFieldNumber": 10
+        }
+    }, {
+        "testData": {
+            "firstNameData": "Firstname",
+            "lastNameData": "Lastname",
+            "emailData": "somemeail@emaaail.com",
+            "addressData": "Down Town 111",
+            "cityData": "Uganda",
+            "regionData": "Angus",
+            "zipCodeData": "12341234",
+            "loginData": null,
+            "passwordData": "1234",
+            "passwordConfirmData": "1234",
+            "emptyField": "Login"
+        },
+        "fieldExpectation": {
+            "errorMessage": "Login name must be alphanumeric only and between 5 and 64 characters!",
+            "lastNameFieldNumber": 12
+        }
+    }, {
+        "testData": {
+            "firstNameData": "Firstname",
+            "lastNameData": "Lastname",
+            "emailData": "somemeail@emaaail.com",
+            "addressData": "Down Town 111",
+            "cityData": "Uganda",
+            "regionData": "Angus",
+            "zipCodeData": "12341234",
+            "loginData": "loooogin111",
+            "passwordData": null,
+            "passwordConfirmData": "1234",
+            "emptyField": "Password"
+        },
+        "fieldExpectation": {
+            "errorMessage": "Password must be between 4 and 20 characters!",
+            "lastNameFieldNumber": 13
+        }
+    }, {
+        "testData": {
+            "firstNameData": "Firstname",
+            "lastNameData": "Lastname",
+            "emailData": "somemeail@emaaail.com",
+            "addressData": "Down Town 111",
+            "cityData": "Uganda",
+            "regionData": "Angus",
+            "zipCodeData": "12341234",
+            "loginData": "loooogin111",
+            "passwordData": "1234",
+            "passwordConfirmData": null,
+            "emptyField": "Password Confirm"
+
+        },
+        "fieldExpectation": {
+            "errorMessage": "Password confirmation does not match password!",
+            "lastNameFieldNumber": 14
+        }
+    }
+]

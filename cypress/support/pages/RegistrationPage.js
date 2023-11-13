@@ -113,6 +113,32 @@ class RegistrationPage extends BasePage{
         return cy.get(this.elements.submitRegistrationFormButton)
     }
 
+    fillInRegistrationFields(webElement, data) {
+        if (webElement.toString() === "#AccountFrm_zone_id" || webElement.toString() === "#AccountFrm_country_id" ) {
+            if (!data) {
+                cy.get(webElement).select("--- Please Select ---")
+                    .should('contain.text', " --- Please Select --- ");
+                return;
+            }
+            cy.get(webElement)
+                .select(data)
+
+            cy.get(webElement)
+                .should('contain.text', data);
+            return;
+        }
+        if (!data) {
+            cy.get(webElement)
+                .clear()
+                .should('be.empty');
+            return;
+        }
+        cy.get(webElement)
+            .clear()
+            .type(data)
+            .should('have.value', data);
+    }
+
     /**
      *  Fill in registration fields
      *  @param {Object} user - user object
@@ -127,21 +153,38 @@ class RegistrationPage extends BasePage{
         this.getRegisterAccountRadioBatton().should('be.enabled');
         this.getToStartRegistrationButton().click();
 
-        this.getFirstNameField().type(user.firstName);
-        this.getLastNameField().type(user.lastName);
-        this.getEmailField().type(user.email);
-        this.getPhoneNumberField().type(user.phone);
-        this.getFaxField().type(user.fax);
-        this.getCompanyNameField().type(user.companyName);
-        this.getAddressFirstField().type(user.address1);
-        this.getAddressSecondField().type(user.address2);
-        this.getCityField().type(user.city);
-        this.getPostcodeField().type(user.postcode);
-        this.getCountryIdField().select(user.country);
-        this.getZoneIdField().select(user.zoneId);
-        this.getLoginNameField().type(user.loginName);
-        this.getPasswordField().type(user.password);
-        this.getPasswordConfirmField().type(user.password);
+        this.fillInRegistrationFields(this.elements.firstNameField, user.firstName);
+        this.fillInRegistrationFields(this.elements.lastNameField, user.lastName);
+        this.fillInRegistrationFields(this.elements.emailField, user.email);
+        this.fillInRegistrationFields(this.elements.phoneNumberField, user.phone);
+        this.fillInRegistrationFields(this.elements.faxField, user.fax);
+        this.fillInRegistrationFields(this.elements.companyNameField, user.companyName);
+        this.fillInRegistrationFields(this.elements.addressFirstField, user.address1);
+        this.fillInRegistrationFields(this.elements.addressSecondField, user.address2);
+        this.fillInRegistrationFields(this.elements.cityField, user.city);
+        this.fillInRegistrationFields(this.elements.postcodeField, user.postcode);
+        this.fillInRegistrationFields(this.elements.countryIdField, user.country_select);
+
+        this.fillInRegistrationFields(this.elements.zoneIdField, user.region);
+        this.fillInRegistrationFields(this.elements.loginNameField, user.loginName);
+        this.fillInRegistrationFields(this.elements.passwordField, user.password);
+        this.fillInRegistrationFields(this.elements.passwordConfirmField, user.password);
+
+        // this.getFirstNameField().type(user.firstName);
+        // this.getLastNameField().type(user.lastName);
+        // this.getEmailField().type(user.email);
+        // this.getPhoneNumberField().type(user.phone);
+        // this.getFaxField().type(user.fax);
+        // this.getCompanyNameField().type(user.companyName);
+        // this.getAddressFirstField().type(user.address1);
+        // this.getAddressSecondField().type(user.address2);
+        // this.getCityField().type(user.city);
+        // this.getPostcodeField().type(user.postcode);
+        // this.getCountryIdField().select(user.country);
+        // this.getZoneIdField().select(user.zoneId);
+        // this.getLoginNameField().type(user.loginName);
+        // this.getPasswordField().type(user.password);
+        // this.getPasswordConfirmField().type(user.password);
 
         this.getNewsLetterCheckbox().click();
         this.getPrivacyPolicyCheckbox().click();

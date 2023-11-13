@@ -15,15 +15,18 @@ describe('Purchasing',()=>{
     it('Buy item', () => {
 
         loginPage.logIn(user);
+        cy.visit("https://automationteststore.com/index.php?rt=product/search&keyword=e&category_id=0");
+
         openNeededItemFromTheCatalog("Lancome Visionnaire Advanced Skin Corrector");
+
         item.getAddToTheCartButton().click();
 
 
 
     })
 
-    afterEach(()=> {
-        accountPage.logOut();
-    })
+    // afterEach(()=> {
+    //     accountPage.logOut();
+    // })
 
 })

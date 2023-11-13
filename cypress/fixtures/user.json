@@ -9,8 +9,8 @@
   "address2": "Khreschatyk St.2",
   "city": "Kyiv",
   "postcode": "00001",
-  "country": "Ukraine",
-  "zoneId": "3490",
+  "country_select": "Ukraine",
+  "region": "3490",
   "loginName": "LoginForSuccessLogIN123",
   "password": "12345611"
 }

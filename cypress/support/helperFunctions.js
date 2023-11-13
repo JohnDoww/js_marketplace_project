@@ -18,5 +18,5 @@ export function openNeededItemFromTheCatalog(searchItem) {
             }
         })
     }
-    cy.contains(searchItem).click();
+    cy.get(`[title="${searchItem}"]`).click();
 }

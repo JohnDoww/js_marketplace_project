@@ -26,35 +26,11 @@ describe('Registration flow', () => {
 })
 
 
-describe.skip('Check empty fields validation', () => {
+describe('Check empty fields validation', () => {
     beforeEach(() => {
         homePage.visit();
     })
 
-
-    // function fillInFields(webElement, data) {
-    //     if (webElement.toString() === "#AccountFrm_zone_id") {
-    //         if (!data) {
-    //             cy.get(webElement).select("--- Please Select ---")
-    //                 .should('contain.text', " --- Please Select --- ");
-    //             return;
-    //         }
-    //         cy.get(webElement)
-    //             .select(data)
-    //             .should('contain.text', data);
-    //         return;
-    //     }
-    //     if (!data) {
-    //         cy.get(webElement)
-    //             // .clear()
-    //             .should('be.empty');
-    //         return;
-    //     }
-    //     cy.get(webElement)
-    //         // .clear()
-    //         .type(data)
-    //         .should('have.value', data);
-    // }
 
     validationForRegistrationFields.forEach(fieldsParameters => {
         it(`Validation for ${fieldsParameters.testData.emptyField} field`, () => {
@@ -65,16 +41,16 @@ describe.skip('Check empty fields validation', () => {
 
             cy.get('[title="Continue"]').click();
 
-            fillInFields(registrationPage.elements.firstNameField, fieldsParameters.testData.firstNameData);
-            fillInFields(registrationPage.elements.lastNameField, fieldsParameters.testData.lastNameData);
-            fillInFields(registrationPage.elements.emailField, fieldsParameters.testData.emailData);
-            fillInFields(registrationPage.elements.addressFirstField, fieldsParameters.testData.addressData);
-            fillInFields(registrationPage.elements.cityField, fieldsParameters.testData.cityData);
-            fillInFields(registrationPage.elements.zoneIdField, fieldsParameters.testData.regionData);
-            fillInFields(registrationPage.elements.postcodeField, fieldsParameters.testData.zipCodeData);
-            fillInFields(registrationPage.elements.loginNameField, fieldsParameters.testData.loginData);
-            fillInFields(registrationPage.elements.passwordField, fieldsParameters.testData.passwordData);
-            fillInFields(registrationPage.elements.passwordConfirmField, fieldsParameters.testData.passwordConfirmData);
+            registrationPage.fillInRegistrationFields(registrationPage.elements.firstNameField, fieldsParameters.testData.firstNameData);
+            registrationPage.fillInRegistrationFields(registrationPage.elements.lastNameField, fieldsParameters.testData.lastNameData);
+            registrationPage.fillInRegistrationFields(registrationPage.elements.emailField, fieldsParameters.testData.emailData);
+            registrationPage.fillInRegistrationFields(registrationPage.elements.addressFirstField, fieldsParameters.testData.addressData);
+            registrationPage.fillInRegistrationFields(registrationPage.elements.cityField, fieldsParameters.testData.cityData);
+            registrationPage.fillInRegistrationFields(registrationPage.elements.zoneIdField, fieldsParameters.testData.regionData);
+            registrationPage.fillInRegistrationFields(registrationPage.elements.postcodeField, fieldsParameters.testData.zipCodeData);
+            registrationPage.fillInRegistrationFields(registrationPage.elements.loginNameField, fieldsParameters.testData.loginData);
+            registrationPage.fillInRegistrationFields(registrationPage.elements.passwordField, fieldsParameters.testData.passwordData);
+            registrationPage.fillInRegistrationFields(registrationPage.elements.passwordConfirmField, fieldsParameters.testData.passwordConfirmData);
 
             cy.get('#AccountFrm_agree')
                 .should('be.enabled');
@@ -97,8 +73,4 @@ describe.skip('Check empty fields validation', () => {
         })
     })
 
-
-    afterEach(() => {
-        accountPage.logOut();
-    })
 })

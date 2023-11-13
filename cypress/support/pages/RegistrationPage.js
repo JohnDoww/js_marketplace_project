@@ -168,26 +168,13 @@ class RegistrationPage extends BasePage{
         this.fillInRegistrationFields(this.elements.passwordField, user.password);
         this.fillInRegistrationFields(this.elements.passwordConfirmField, user.password);
 
-        // this.getFirstNameField().type(user.firstName);
-        // this.getLastNameField().type(user.lastName);
-        // this.getEmailField().type(user.email);
-        // this.getPhoneNumberField().type(user.phone);
-        // this.getFaxField().type(user.fax);
-        // this.getCompanyNameField().type(user.companyName);
-        // this.getAddressFirstField().type(user.address1);
-        // this.getAddressSecondField().type(user.address2);
-        // this.getCityField().type(user.city);
-        // this.getPostcodeField().type(user.postcode);
-        // this.getCountryIdField().select(user.country);
-        // this.getZoneIdField().select(user.zoneId);
-        // this.getLoginNameField().type(user.loginName);
-        // this.getPasswordField().type(user.password);
-        // this.getPasswordConfirmField().type(user.password);
-
         this.getNewsLetterCheckbox().click();
         this.getPrivacyPolicyCheckbox().click();
         this.getSubmitRegistrationFormButton().click();
     }
+
+
+
 
 }
 export default new RegistrationPage();

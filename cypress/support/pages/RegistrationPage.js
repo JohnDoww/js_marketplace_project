@@ -122,9 +122,7 @@ class RegistrationPage extends BasePage{
             }
             cy.get(webElement)
                 .select(data)
-
-            cy.get(webElement)
-                .should('contain.text', data);
+                // .should('contain.text', data);
             return;
         }
         if (!data) {

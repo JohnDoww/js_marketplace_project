@@ -1,10 +1,9 @@
 import BasePage from "./BasePage";
 
 
+class RegistrationPage extends BasePage {
 
-class RegistrationPage extends BasePage{
-
-    constructor(){
+    constructor() {
         super();
         this.elements.firstNameField = '#AccountFrm_firstname';
         this.elements.lastNameField = '#AccountFrm_lastname';
@@ -26,95 +25,35 @@ class RegistrationPage extends BasePage{
         this.elements.submitRegistrationFormButton = 'button[title="Continue"]';
         this.elements.registerAccountRadioBatton = '#accountFrm_accountregister';
         this.elements.toStartRegistrationButton = '[title="Continue"]';
+        this.elements.applyRegistrationFormButton = '[title="Continue"]';
+        this.elements.privacyPolicyCheckbox = '#AccountFrm_agree';
 
     }
 
-    getFirstNameField(){
-        return cy.get(this.elements.firstNameField)
-    }
 
-    getLastNameField(){
-        return cy.get(this.elements.lastNameField)
-    }
-
-    getEmailField(){
-        return cy.get(this.elements.emailField)
-    }
-
-    getPhoneNumberField(){
-        return cy.get(this.elements.phoneNumberField)
-    }
-
-    getFaxField(){
-        return cy.get(this.elements.faxField)
-    }
-
-    getCompanyNameField(){
-        return cy.get(this.elements.companyNameField)
-    }
-
-    getAddressFirstField(){
-        return cy.get(this.elements.addressFirstField)
-    }
-
-    getAddressSecondField(){
-        return cy.get(this.elements.addressSecondField)
-    }
-
-    getCityField(){
-        return cy.get(this.elements.cityField)
-    }
-
-    getPostcodeField(){
-        return cy.get(this.elements.postcodeField)
-    }
-
-    getCountryIdField(){
-        return cy.get(this.elements.countryIdField)
-    }
-
-    getZoneIdField(){
-        return cy.get(this.elements.zoneIdField)
-    }
-
-    getLoginNameField(){
-        return cy.get(this.elements.loginNameField)
-    }
-
-    getPasswordField(){
-        return cy.get(this.elements.passwordField)
-    }
-
-    getPasswordConfirmField(){
-        return cy.get(this.elements.passwordConfirmField)
-    }
-
-    getNewsLetterCheckbox(){
+    getNewsLetterCheckbox() {
         return cy.get(this.elements.newsLetterCheckbox)
     }
 
-    getPrivacyPolicyCheckbox(){
+    getPrivacyPolicyCheckbox() {
         return cy.get(this.elements.privacyPolicyCheckbox)
     }
 
-    getRegisterAccountRadioBatton(){
+    getRegisterAccountRadioBatton() {
         return cy.get(this.elements.registerAccountRadioBatton)
     }
 
-    getToStartRegistrationButton(){
+    getToStartRegistrationButton() {
         return cy.get(this.elements.toStartRegistrationButton)
     }
 
-    /**
-     * Get submit button element from page
-     * @returns {CypressElement} Returns the Submit Button in Registration Form as Cypress element.
-     */
-    getSubmitRegistrationFormButton(){
+
+    getSubmitRegistrationFormButton() {
         return cy.get(this.elements.submitRegistrationFormButton)
     }
 
     fillInRegistrationFields(webElement, data) {
-        if (webElement.toString() === "#AccountFrm_zone_id" || webElement.toString() === "#AccountFrm_country_id" ) {
+        if (webElement.toString() === "#AccountFrm_zone_id" || webElement.toString() === "#AccountFrm_country_id") {
             if (!data) {
                 cy.get(webElement).select("--- Please Select ---")
                     .should('contain.text', " --- Please Select --- ");
@@ -122,7 +61,7 @@ class RegistrationPage extends BasePage{
             }
             cy.get(webElement)
                 .select(data)
-                // .should('contain.text', data);
+            // .should('contain.text', data);
             return;
         }
         if (!data) {
@@ -137,12 +76,8 @@ class RegistrationPage extends BasePage{
             .should('have.value', data);
     }
 
-    /**
-     *  Fill in registration fields
-     *  @param {Object} user - user object
-     *  User object example can be found in ./cypress/fixtures/user.json
-     */
-    registrateNewUser(user){
+
+    registrateNewUser(user) {
 
         const basePage = new BasePage();
         basePage.getLoginOrRegistratedButton().click();
@@ -173,8 +108,40 @@ class RegistrationPage extends BasePage{
         this.getSubmitRegistrationFormButton().click();
     }
 
+    fillINAndCheckFieldsValidation(data) {
 
+        this.fillInRegistrationFields(this.elements.firstNameField, data.testData.firstNameData);
+        this.fillInRegistrationFields(this.elements.lastNameField, data.testData.lastNameData);
+        this.fillInRegistrationFields(this.elements.emailField, data.testData.emailData);
+        this.fillInRegistrationFields(this.elements.addressFirstField, data.testData.addressData);
+        this.fillInRegistrationFields(this.elements.cityField, data.testData.cityData);
+        this.fillInRegistrationFields(this.elements.zoneIdField, data.testData.regionData);
+        this.fillInRegistrationFields(this.elements.postcodeField, data.testData.zipCodeData);
+        this.fillInRegistrationFields(this.elements.loginNameField, data.testData.loginData);
+        this.fillInRegistrationFields(this.elements.passwordField, data.testData.passwordData);
+        this.fillInRegistrationFields(this.elements.passwordConfirmField, data.testData.passwordConfirmData);
+
+        cy.get(this.elements.privacyPolicyCheckbox)
+            .should('be.enabled');
+        cy.get(this.elements.privacyPolicyCheckbox)
+            .click();
+        cy.get(this.elements.applyRegistrationFormButton)
+            .should('be.visible');
+        cy.get(this.elements.applyRegistrationFormButton)
+            .click();
+
+        cy.get("div ~span")
+            .eq(data.fieldExpectation.lastNameFieldNumber)
+            .should('have.attr', 'class', 'help-block')
+            .then(element => {
+                expect(element)
+                    .to
+                    .contain
+                    .text(data.fieldExpectation.errorMessage);
+            })
+    }
 
 
 }
+
 export default new RegistrationPage();

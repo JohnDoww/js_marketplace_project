@@ -12,9 +12,6 @@ class Item extends BasePage{
         return cy.get(this.elements.addToTheCartButton)
     }
 
-    addItemToTheCart(){
-        this.getSizeOfItemField().select('')
-    }
 
 }
 export default new Item();

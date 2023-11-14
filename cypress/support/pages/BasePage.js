@@ -6,7 +6,7 @@ export default class BasePage{
         this.elements.helloUserTitle = '.top.menu_account div';
     }
 
-    getLoginOrRegistratedButton(){
+     getLoginOrRegistratedButton(){
         return cy.get(this.elements.loginOrRegistratedButton);
     }
 
@@ -14,6 +14,5 @@ export default class BasePage{
         return cy.get(this.elements.helloUserTitle);
     }
 
+
 }
-
-

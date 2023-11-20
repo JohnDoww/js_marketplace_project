@@ -12,6 +12,14 @@
     "cypress": "^13.3.3"
   },
   "devDependencies": {
-    "@faker-js/faker": "^8.2.0"
+    "@faker-js/faker": "^8.3.1",
+    "@mmisty/cypress-allure-adapter": "^0.15.2",
+    "@shelex/cypress-allure-plugin": "^2.5.0",
+    "allure-commandline": "^2.24.1"
+  },
+  "scripts": {
+    "allure:clear": "rm -rf allure-report allure-results cypress/screenshots cypress/videos",
+    "cy:run:allure": "npx cypress run --env allure=true",
+    "allure:generate": "allure generate"
   }
 }

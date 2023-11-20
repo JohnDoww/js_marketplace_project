@@ -11,7 +11,7 @@ const basePage = new BasePage();
 
 
 
-describe.skip('Registration flow', () => {
+describe('Registration flow', () => {
 
     beforeEach(() => {
         homePage.visit();

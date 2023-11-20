@@ -1,11 +1,13 @@
 const { defineConfig } = require("cypress");
+const { configureAllureAdapterPlugins } = require("@mmisty/cypress-allure-adapter/plugins");
 
 module.exports = defineConfig({
+  viewportHeight: 1080,
+  viewportWidth: 1920,
   e2e: {
-    viewportHeight: 1080,
-    viewportWidth: 1920,
     setupNodeEvents(on, config) {
-      // implement node event listeners here
-    },
-  },
+        configureAllureAdapterPlugins(on, config);
+        return config;
+      }
+    }
 });

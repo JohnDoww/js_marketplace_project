@@ -2,17 +2,17 @@ Jenkinsfile (Declarative Pipeline)
 pipeline {
     agent any
     stages {
-        stage('Build') {
+        stage('Install dependencies') {
             steps {
-               echo "Deploy"
+               echo "Build"
             }
         }
-        stage('Test') {
+        stage('Test run') {
             steps {
-               echo "Deploy"
+               echo "Test"
             }
         }
-        stage('Deploy') {
+        stage('Allure report') {
             steps {
                 echo "Deploy"
 
